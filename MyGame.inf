@@ -1,0 +1,31 @@
+[Defines]
+INF_VERSION = 1.25
+BASE_NAME = MyGame
+FILE_GUID = 99088b54-9d2f-4937-a898-3ba86cb98b00
+MODULE_TYPE = UEFI_APPLICATION
+VERSION_STRING = 1.0
+ENTRY_POINT = ShellCEntryLib
+
+[Sources]
+	main.c
+	test.c
+	util.c
+	game.c
+	gameUtil.c
+
+[Packages]
+	MdePkg/MdePkg.dec
+	ShellPkg/ShellPkg.dec
+	StdLib/StdLib.dec
+
+[LibraryClasses]
+	LibC
+	LibMath
+	LibTime
+	LibStdio
+	UefiLib
+	ShellCEntryLib
+
+[BuildOptions]
+	GCC:*_*_*_CC_FLAGS = -Wno-error
+
