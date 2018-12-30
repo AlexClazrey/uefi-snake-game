@@ -48,7 +48,7 @@ static et gameKey(GameSnake* snake) {
             if(snake->direction.x != 1)
                 snake->direction = makeVec2(-1, 0);
         } else if (scanCode == SCAN_RIGHT) {
-            if(snake->direction.x != 1)
+            if(snake->direction.x != -1)
                 snake->direction = makeVec2(1, 0);
         }
         if(scanCode == SCAN_UP || scanCode == SCAN_DOWN || scanCode == SCAN_LEFT || scanCode == SCAN_RIGHT) {
