@@ -3,6 +3,6 @@
 #include "std.h"
 #include "gameType.h"
 
-EFI_STATUS mainCycle();
+et gameCycle();
 
 #endif

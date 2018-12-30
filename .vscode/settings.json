@@ -3,6 +3,7 @@
         "std.h": "c",
         "input.h": "c",
         "test.h": "c",
-        "stdlib.h": "c"
+        "stdlib.h": "c",
+        "printlib.h": "c"
     }
 }

@@ -6,6 +6,7 @@
 static EFI_GRAPHICS_OUTPUT_PROTOCOL *display;
 static EFI_HII_FONT_PROTOCOL *hiiFont;
 static pixel* bltBuffer;
+static pixel* screenBak;
 static UINT32 hRes, vRes;
 
 static int round(double d) {
@@ -13,7 +14,7 @@ static int round(double d) {
 }
 
 int random(int min, int max) {
-    return rand() * (max - min) + min;
+    return rand() % (max - min) + min;
 }
 
 et utilSleep(int ms) {
@@ -76,11 +77,15 @@ et initDisplay() {
     vRes = display->Mode->Info->VerticalResolution;
     int bufferSize = hRes * vRes * sizeof(pixel);
     status = gBS->AllocatePool(EfiBootServicesData, bufferSize, (void**)&bltBuffer);
+    status = gBS->AllocatePool(EfiBootServicesData, bufferSize, (void**)&screenBak);
+    status = display->Blt(display, screenBak, EfiBltVideoToBltBuffer, 0, 0, 0, 0, hRes, vRes, hRes*sizeof(pixel));
     return status;
 }
 
 void freeDisplay() {
+    display->Blt(display, screenBak, EfiBltBufferToVideo, 0, 0, 0, 0, hRes, vRes, hRes*sizeof(pixel));
     gBS->FreePool(bltBuffer);
+    gBS->FreePool(screenBak);
 }
 
 void getDisplayResolution(int *width, int *height) {

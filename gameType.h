@@ -14,15 +14,19 @@ typedef struct RouteNode {
 
 typedef struct GameConfig {
     int velocity; // velocity per second
-    int drawMS; // refresh rate
-    int readKeyForNDraw; // read key after n draw
-    int timeoutForNDraw; // make movement after n draw
+    int cycleMS; // refresh rate
+    int drawForNCycle;
+    int readKeyForNCycle; // read key after n cycles
+    int timeoutForNCycle; // make movement after n cycles
     int rHead;
     int rLine;
     int rWall;
+    int rBean;
     int height;
     int width;
     int beanAdd;
+    int beanVelocity;
+    int rCollision;
 } GameConfig;
 
 enum GameState {
@@ -31,7 +35,7 @@ enum GameState {
     game_state_pause,
     game_state_dead,
     game_state_exit,
-    game_state_max,
+    game_state_count,
 };
 
 typedef struct GameSnake {
@@ -45,6 +49,7 @@ typedef struct GameSnake {
     int length;
     int lengthAdd;
     struct Vec2 bean;
+    int score;
 } GameSnake;
 
 
